@@ -38,42 +38,100 @@ namespace TareaS10
                 }
                 else
                 {
+                    ShowCustomAlertDialog("Espacio 2");
 
                 }
             }
             else
             {
-
+                ShowCustomAlertDialog("Espacio 1");
             }
         }
 
         private void DivOp_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (Value1.Text != "")
+            {
+                if (Value2.Text != "")
+                {
+
+                }
+                else
+                {
+                    ShowCustomAlertDialog("Espacio 2");
+
+                }
+            }
+            else
+            {
+                ShowCustomAlertDialog("Espacio 1");
+            }
         }
 
         private void MulOp_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (Value1.Text != "")
+            {
+                if (Value2.Text != "")
+                {
+
+                }
+                else
+                {
+                    ShowCustomAlertDialog("Espacio 2");
+
+                }
+            }
+            else
+            {
+                ShowCustomAlertDialog("Espacio 1");
+            }
         }
 
         private void ResOp_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (Value1.Text != "")
+            {
+                if (Value2.Text != "")
+                {
+
+                }
+                else
+                {
+                    ShowCustomAlertDialog("Espacio 2");
+
+                }
+            }
+            else
+            {
+                ShowCustomAlertDialog("Espacio 1");
+            }
         }
 
         private void SumOp_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (Value1.Text != "")
+            {
+                if (Value2.Text != "")
+                {
+
+                }
+                else
+                {
+                    ShowCustomAlertDialog("Espacio 2");
+
+                }
+            }
+            else
+            {
+                ShowCustomAlertDialog("Espacio 1");
+            }
         }
 
-        public static void MistakeEntry(string message)
+        public async void ShowCustomAlertDialog(string message)
         {
-            var msg = message;
-            var aqui= Android.App.Application.Context;
-            var duration = ((int)message.Length);
-            Toast.MakeText(aqui, duration);
+            await DisplayAlert("Error", "Faltan datos en"+message,"Entendido");
         }
-            
+        
     }
 }
