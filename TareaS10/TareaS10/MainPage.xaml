@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TareaS10.MainPage">
+
+    <StackLayout Margin="0,170,0,0">
+        <Label x:Name="Result" FontSize="Header" HorizontalTextAlignment="Center" TextColor="#c7522a">0,00</Label>
+        <StackLayout>
+            <Entry Placeholder="N1" x:Name="Value1" Margin="50,0,50,0"></Entry>
+            <Entry Placeholder="N2" x:Name="Value2" Margin="50,0,50,0"></Entry>
+        </StackLayout>
+        
+        <StackLayout HorizontalOptions="Center">
+
+            
+            <Grid Padding="50,10,50,10">
+                
+                <!-- Definimos las filas -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    
+                </Grid.RowDefinitions>
+
+                <!-- Definimos las columnas -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Celda 1 -->
+                <Button Grid.Row="0" Grid.Column="0" Text="+" FontSize="Large" BackgroundColor="#74a892" CornerRadius="15" x:Name="SumOp"/>
+
+                <!-- Celda 2 -->
+                <Button Grid.Row="0" Grid.Column="1" Text="-" FontSize="Large" BackgroundColor="#74a892" CornerRadius="15" x:Name="ResOp"/>
+
+                <!-- Celda 3 -->
+                <Button Grid.Row="1" Grid.Column="0" Text="*" FontSize="Large" BackgroundColor="#74a892" CornerRadius="15" x:Name="MulOp"/>
+
+                <!-- Celda 4 -->
+                <Button Grid.Row="1" Grid.Column="1" Text="%" FontSize="Large" BackgroundColor="#74a892" CornerRadius="15" x:Name="DivOp"/>
+            </Grid>
+
+            <Button Text="C" FontSize="Large" BackgroundColor="#008585"  Margin="50,-10,50,10" CornerRadius="50" x:Name="ClnOp"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
