@@ -43,6 +43,7 @@
 
             <Button Text="C" FontSize="Large" BackgroundColor="#008585"  Margin="50,-10,50,10" CornerRadius="50" x:Name="ClnOp"/>
         </StackLayout>
+        <Label x:Name="Historial" TextColor="Black"></Label>
     </StackLayout>
 
 </ContentPage>
