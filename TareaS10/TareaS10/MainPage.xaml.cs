@@ -20,6 +20,10 @@ namespace TareaS10
         {
             InitializeComponent();
 
+            Value1.Text = "";
+            Value2.Text = "";
+            Result.Text = "0,00";
+
             DeleteTextFile("RegistroOp");
             CreateTextFile("RegistroOp", "");
             SumOp.Clicked += SumOp_Clicked;
@@ -27,7 +31,33 @@ namespace TareaS10
             MulOp.Clicked += MulOp_Clicked;
             DivOp.Clicked += DivOp_Clicked;
             ClnOp.Clicked += ClnOp_Clicked;
+            Value1.TextChanged += Value1_TextChanged;
+            Value2.TextChanged += Value2_TextChanged;
 
+        }
+
+        private void Value2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string textoIngresado = e.NewTextValue;
+
+            bool contieneCaracteresNoNumericos = textoIngresado.ToCharArray().Any(c => !char.IsDigit(c));
+
+            if (contieneCaracteresNoNumericos)
+            {
+                ((Entry)sender).Text = new string(textoIngresado.Where(c => char.IsDigit(c)).ToArray());
+            }
+        }
+
+        private void Value1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string textoIngresado = e.NewTextValue;
+
+            bool contieneCaracteresNoNumericos = textoIngresado.ToCharArray().Any(c => !char.IsDigit(c));
+
+            if (contieneCaracteresNoNumericos)
+            {
+                ((Entry)sender).Text = new string(textoIngresado.Where(c => char.IsDigit(c)).ToArray());
+            }
         }
 
         private void ClnOp_Clicked(object sender, EventArgs e)
@@ -35,6 +65,8 @@ namespace TareaS10
             Value1.Text = "";
             Value2.Text = "";
             Result.Text = "0,00";
+            ClearTextFile("RegistroOp");
+            Historial.Text = ReadTextFile("RegistroOp");
         }
 
         private void DivOp_Clicked(object sender, EventArgs e)
@@ -48,7 +80,9 @@ namespace TareaS10
                     if (dato1!=0 && dato2!=0)
                     {
                         var resultado = dato1/dato2;
-                        AppendTextToFile("RegistroOP", (dato1 + "/" + dato2 + "" + resultado));
+                        AppendTextToFile("RegistroOp", (dato1 + "/" + dato2 + "=" + resultado));
+                        Result.Text = resultado.ToString(); 
+                        Historial.Text = ReadTextFile("RegistroOp");
 
                     }
                     else
@@ -77,7 +111,10 @@ namespace TareaS10
                     var dato1 = int.Parse(Value1.Text);
                     var dato2 = int.Parse(Value2.Text);
                     var resultado = dato1*dato2;
-                    AppendTextToFile("RegistroOP", (dato1 + "x" + dato2 + "" + resultado));
+                    AppendTextToFile("RegistroOp", (dato1 + "x" + dato2 + "=" + resultado));
+                    Result.Text = resultado.ToString();
+
+                    Historial.Text = ReadTextFile("RegistroOp");
                 }
                 else
                 {
@@ -100,7 +137,10 @@ namespace TareaS10
                     var dato1 = int.Parse(Value1.Text);
                     var dato2 = int.Parse(Value2.Text);
                     var resultado = dato1 - dato2;
-                    AppendTextToFile("RegistroOP", (dato1 + "-" + dato2 + "" + resultado));
+                    AppendTextToFile("RegistroOp", (dato1 + "-" + dato2 + "=" + resultado));
+                    Result.Text = resultado.ToString();
+
+                    Historial.Text=ReadTextFile("RegistroOp");
                 }
                 else
                 {
@@ -122,7 +162,10 @@ namespace TareaS10
                     var dato1 = int.Parse(Value1.Text);
                     var dato2 = int.Parse(Value2.Text);
                     var resultado = dato1 + dato2;
-                    AppendTextToFile("RegistroOP", (dato1 + "+" + dato2 + "" + resultado));
+                    AppendTextToFile("RegistroOp", (dato1 + "+" + dato2 + "=" + resultado));
+                    Result.Text = resultado.ToString();
+
+                    Historial.Text = ReadTextFile("RegistroOp");
                 }
                 else
                 {
@@ -172,6 +215,31 @@ namespace TareaS10
                 writer.WriteLine(content);
             }
         }
+
+        public static string ReadTextFile(string fileName)
+        {
+            var documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(documentsPath, fileName);
+
+            if (File.Exists(filePath))
+            {
+                return File.ReadAllText(filePath);
+            }
+
+            return string.Empty;
+        }
+
+        public static void ClearTextFile(string fileName)
+        {
+            var documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(documentsPath, fileName);
+
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.Write(string.Empty);
+            }
+        }
+
 
     }
 }
